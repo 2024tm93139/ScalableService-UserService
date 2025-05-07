@@ -1,5 +1,6 @@
 package com.bits.ss.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -35,7 +36,7 @@ public class WishlistService {
 		return EntityStatus.CREATED;
 	}
 
-	public EntityStatus updateWishlist(WishlistData data) {
+	public EntityStatus updateWishlist(WishlistData data, boolean addProduct) {
 		Optional<Customer> customer = customerRepository.findById(data.getCustomer());
 		if (!customer.isPresent()) {
 			return EntityStatus.NOT_EXIST;
@@ -44,7 +45,17 @@ public class WishlistService {
 		if (!wishlist.isPresent()) {
 			return EntityStatus.NOT_EXIST;
 		}
-		wishlist.get().setProductList(data.getProductList());
+		List<String> existingProduct = wishlist.get().getProductList();
+		if (addProduct) {
+			data.getProductList().forEach(c -> {
+				if (!existingProduct.contains(c)) {
+					existingProduct.add(c);
+				}
+			});
+		} else {
+			existingProduct.removeAll(data.getProductList());
+		}
+		wishlist.get().setProductList(existingProduct);
 		wishlistRepository.save(wishlist.get());
 		return EntityStatus.UPDATED;
 	}

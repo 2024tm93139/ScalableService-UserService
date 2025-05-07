@@ -22,9 +22,14 @@ public class WishlistController {
 		return wishlistService.createWishlist(data);
 	}
 
-	@PostMapping(value = "/update")
-	public EntityStatus updateWishlist(@RequestBody WishlistData data) {
-		return wishlistService.updateWishlist(data);
+	@PostMapping(value = "/update/add")
+	public EntityStatus addProductToWishlist(@RequestBody WishlistData data) {
+		return wishlistService.updateWishlist(data,true);
+	}
+
+	@PostMapping(value = "/update/delete")
+	public EntityStatus removeProductFromWishlist(@RequestBody WishlistData data) {
+		return wishlistService.updateWishlist(data,false);
 	}
 
 	@DeleteMapping(value = "/delete")

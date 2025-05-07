@@ -17,12 +17,12 @@ import com.bits.ss.entity.repository.CustomerRepository;
 public class CustomerService {
 	@Autowired
 	private CustomerRepository customerRepository;
-	
+
 	@Autowired
 	private CustomerToCustomerDataConverter customerToCustomerDataConverter;
 
 	public EntityStatus createCustomer(CustomerData data, String password) {
-		Customer customer = customerRepository.findByEmail(data.getUserEmail());
+		Customer customer = this.findByEmail(data.getUserEmail());
 		if (Objects.nonNull(customer)) {
 			return EntityStatus.ALREADY_EXIST;
 		}
@@ -33,6 +33,10 @@ public class CustomerService {
 		model.setPassword(encryptPassword(password));
 		customerRepository.save(model);
 		return EntityStatus.CREATED;
+	}
+
+	public Customer findByEmail(String email) {
+		return customerRepository.findByEmail(email);
 	}
 
 	public EntityStatus updateCustomer(CustomerData data) {
@@ -74,10 +78,10 @@ public class CustomerService {
 		}
 		return false;
 	}
-	
+
 	public CustomerData getCustomer(Integer id) {
-		Optional<Customer> cust=customerRepository.findById(id);
-		if(cust.isPresent()) {
+		Optional<Customer> cust = customerRepository.findById(id);
+		if (cust.isPresent()) {
 			return customerToCustomerDataConverter.convert(cust.get());
 		}
 		return null;
@@ -97,5 +101,19 @@ public class CustomerService {
 
 	private String encryptPassword(String password) {
 		return DigestUtils.md5DigestAsHex(password.getBytes());
+	}
+
+	public boolean login(String username, String password) {
+		Customer customer = customerRepository.findByEmail(username);
+		if (Objects.isNull(customer)) {
+			return Boolean.FALSE;
+		} else if (!customer.getPassword().equals(encryptPassword(password))) {
+			return Boolean.FALSE;
+		}
+		return Boolean.TRUE;
+	}
+
+	public void deletUser(Customer customer) {
+		customerRepository.delete(customer);
 	}
 }
