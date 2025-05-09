@@ -31,12 +31,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8081/customer/create",
+					"raw": "http://localhost:{{port_no}}/customer/create",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8081",
+					"port": "{{port_no}}",
 					"path": [
 						"customer",
 						"create"
@@ -63,12 +63,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8081/customer/update",
+					"raw": "http://localhost:{{port_no}}/customer/update",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8081",
+					"port": "{{port_no}}",
 					"path": [
 						"customer",
 						"update"
@@ -86,12 +86,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8081/customer?id=1000000",
+					"raw": "http://localhost:{{port_no}}/customer?id=1000000",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8081",
+					"port": "{{port_no}}",
 					"path": [
 						"customer"
 					],
@@ -134,12 +134,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8081/customer/credential",
+					"raw": "http://localhost:{{port_no}}/customer/credential",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8081",
+					"port": "{{port_no}}",
 					"path": [
 						"customer",
 						"credential"
@@ -166,12 +166,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8081/address/create",
+					"raw": "http://localhost:{{port_no}}/address/create",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8081",
+					"port": "{{port_no}}",
 					"path": [
 						"address",
 						"create"
@@ -198,12 +198,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8081/address/update",
+					"raw": "http://localhost:{{port_no}}/address/update",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8081",
+					"port": "{{port_no}}",
 					"path": [
 						"address",
 						"update"
@@ -230,12 +230,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8081/address/remove",
+					"raw": "http://localhost:{{port_no}}/address/remove",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8081",
+					"port": "{{port_no}}",
 					"path": [
 						"address",
 						"remove"
@@ -265,12 +265,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8081/address?id=20000000",
+					"raw": "http://localhost:{{port_no}}/address?id=20000000",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8081",
+					"port": "{{port_no}}",
 					"path": [
 						"address"
 					],
@@ -302,12 +302,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8081/wishlist/create",
+					"raw": "http://localhost:{{port_no}}/wishlist/create",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8081",
+					"port": "{{port_no}}",
 					"path": [
 						"wishlist",
 						"create"
@@ -334,12 +334,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8081/wishlist/update",
+					"raw": "http://localhost:{{port_no}}/wishlist/update",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8081",
+					"port": "{{port_no}}",
 					"path": [
 						"wishlist",
 						"update"
@@ -358,7 +358,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\":3000000\r\n}",
+					"raw": "{\r\n    \"id\":3000001\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -366,12 +366,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8081/wishlist/delete",
+					"raw": "http://localhost:{{port_no}}/wishlist/delete",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8081",
+					"port": "{{port_no}}",
 					"path": [
 						"wishlist",
 						"delete"
@@ -379,6 +379,35 @@
 				}
 			},
 			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "port_no",
+			"value": "8081",
+			"type": "default"
 		}
 	]
 }
