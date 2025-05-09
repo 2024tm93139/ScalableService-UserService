@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "Compiling code"
-cd /codebase
-mvn clean install
-echo "Running app"
+cd /home/codebase
+git pull
+mvn package
 mvn exec:java -Dexec.mainClass=com.bits.ss.SsUserServiceApplication
