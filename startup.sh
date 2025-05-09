@@ -2,5 +2,5 @@
 echo "Compiling code"
 cd /home/codebase
 git pull
-mvnw package
+mvnw compile
 mvnw exec:java -Dexec.mainClass=com.bits.ss.SsUserServiceApplication
