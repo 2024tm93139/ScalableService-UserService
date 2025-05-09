@@ -1,6 +1,7 @@
-#!/bin/bash
+#!/bin/sh
 echo "Compiling code"
-cd /home/codebase
+cd /opt/codebase
 git pull
-mvnw compile
-mvnw exec:java -Dexec.mainClass=com.bits.ss.SsUserServiceApplication
+echo "Doing from repo"
+#mvnw compile
+#mvnw exec:java -Dexec.mainClass=com.bits.ss.SsUserServiceApplication
