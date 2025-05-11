@@ -46,6 +46,9 @@ public class WishlistService {
 			return EntityStatus.NOT_EXIST;
 		}
 		List<String> existingProduct = wishlist.get().getProductList();
+		if(existingProduct==null){
+			existingProduct=new ArrayList()<>;
+		}
 		if (addProduct) {
 			data.getProductList().forEach(c -> {
 				if (!existingProduct.contains(c)) {
