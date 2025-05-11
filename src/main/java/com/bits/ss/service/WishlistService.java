@@ -1,5 +1,6 @@
 package com.bits.ss.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,9 +46,9 @@ public class WishlistService {
 		if (!wishlist.isPresent()) {
 			return EntityStatus.NOT_EXIST;
 		}
-		List<String> existingProduct = wishlist.get().getProductList();
-		if(existingProduct==null){
-			existingProduct=new ArrayList()<>;
+		List<String> existingProduct = new ArrayList<>();
+		if(existingProduct!=null){
+			existingProduct.addAll(wishlist.get().getProductList());
 		}
 		if (addProduct) {
 			data.getProductList().forEach(c -> {
