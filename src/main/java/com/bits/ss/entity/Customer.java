@@ -17,13 +17,13 @@ public class Customer {
 	@Column
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_id_generator")
 	private Integer id;
-	@Column(nullable = false, unique = true)
+	@Column(nullable = false,unique=true)
 	private String email;
-	@Column(nullable = false, unique = true)
+	@Column(nullable = false)
 	private String name;
 	@Column
 	private String phoneNumber;
-	@Column(nullable = false, unique = true)
+	@Column(nullable = false)
 	private String password;
 	@OneToMany(mappedBy = "customer")
 	private List<Address> addressList;
